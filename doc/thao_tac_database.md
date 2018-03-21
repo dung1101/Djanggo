@@ -1,4 +1,4 @@
-# Thao tác trên database thông qua QuerySet API
+# Thao tác trên database thông qua API
 ## Tạo bảng
 Trong app tên là myapp mở file models.py và tạo class với mỗi class là 1 bảng trong csdl , mỗi thuộc tính là một cột
 Ví dụ 
@@ -36,41 +36,28 @@ python manage.py migrate
 ```
 Sau khi thành công thì trên cơ sở dũ liệu sẽ tạo 2 bảng tương ứng với 2 class như bên trên
 ## Làm việc với cơ sở dữ liệu thông qua python API
-### Mở shell
+Mở shell
 ```
 python manage.py shell
 ```
-### Thêm các đối tượng cho bảng
-```
->>>from myapp.models import Reporter
-#cách 1
->>>r = Reporter(full_name='Sinionth')
->>>r.save()
-#cách 2
->>>r =Reporter.objects.create(full_name='Sinionth')
-```
-### show các đối tượng
-```
-#show tất cả các đối tượng
->>>Reporter.objects.all()
+|Hàm|Mô tả|Ví dụ|
+|---|-----|-----|
+|filter()|trả về các phần tử phù hợp với đk|Reporter.objects.filter(full_name__startswith="si")|
+|||Reporter.objects.filter(full_name__contains="ni")|
+|exclude()|trả về các phần tử không phù hợp với đk|Reporter.objects.exclude(full_name__startswith="si")|
+|||Reporter.objects.exclude(full_name__contains="ni")|
+|||Reporter.objects.exclude(id=10)|
+|order_by()|sắp xếp|Reporter.objects.filter(full_name__contains="ni").order_by('id')|
+|reverse()|đảo|Reporter.objects.filter(full_name__contains="ni").order_by('id').reverse()|
+|distinct()|lại bỏ dupplicate|Reporter.objects.filter(full_name__contains="ni").order_by('id').distinct('full_name')|
+|all()|trả về tất cả các đối tượng|Reporter.objects.all()|
+|create()|thêm đối tượng|Reporter.objects.create(full_name='Sinionth')|
+|save()|lưu đối tượng|r = Reporter(full_name='Sinionth')|
+|||r.save()|
+|get()|lấy đối tượng|r=Reporter.objects.get(full_name__startswith="si")|
+|get_or_create()|nếu đối tượng ko tồn tại thì tạo|r.objects.get_or_create(full_name="sinionth")|
+|delete()|xóa đối tượng|r.delete()|
 
-#show đối tượng theo ý muốn
->>>Reporter.objects.filter(full_name__startswith="si")
->>>Reporter.objects.filter(full_name__contains="ni")
->>>Reporter.objects.filter(id=10)
-```
-## Lấy đối tượng (chỉ 1)
-```
-#lấy đối tượng
->>>r=Reporter.objects.get(full_name__startswith="si")
->>>r=Reporter.objects.get(full_name__contains="ni")
->>>r=Reporter.objects.get(fullname='sini')
-#nếu đối tượng không tồn tại thì tạo
->>>r.objects.get_or_create(full_name="sinionth")
-```
-#xóa đối tượng 
-```
->>>r.delete()
-```
 Tài liệu tham khảo
 https://docs.djangoproject.com/en/2.0/ref/models/querysets/#django.db.models.query.QuerySet.create
+https://docs.djangoproject.com/en/2.0/topics/db/queries/
