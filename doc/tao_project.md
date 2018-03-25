@@ -29,6 +29,17 @@ python manage.py runserver
 python manage.py startapp myapp
 ```
 myapp là tên app
+## install app
+mở file settings.py trong folder project 
+```
+'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp'
+```
 ## Cấu trúc app
 ```
 myapp/
