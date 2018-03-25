@@ -26,7 +26,7 @@ Tạo 2 bảng:
 migration : chuyển đổi các câu lệnh sql tương ứng để tạo bảng
 mở terminal và gõ
 ```
-python manage.py makemigration myapp
+python manage.py makemigrations myapp
 ```
 Nếu thành công sẽ tạo một bản migration nằm trong thư mục myapp/migrations
 Ta có thể xem file này để xem câu lệnh sql đã chuyển đổi
