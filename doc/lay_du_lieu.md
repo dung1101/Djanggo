@@ -1,5 +1,5 @@
-# Liệt kê danh sách
-Mở views.py
+# 1.Tạo trang chủ liệt kê danh sách truyện
+* Mở truyenCVviews.py
 ```
 from django.shortcuts import render
 from .models import Truyen
@@ -8,8 +8,8 @@ def home(request):
     content = {'truyen':Truyen.objects.all()}
     return render(request,'truyenCV/home.html',content)
 ```
-Trong thư mục `./templates/truyenCV/`
-* Tạo file base.html
+* Trong thư mục `./templates/truyenCV/`
+Tạo file base.html
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ Trong thư mục `./templates/truyenCV/`
 </body>
 </html>
 ```
-* Tạo file home.html 
+Tạo file home.html 
 ```
 {% extends "truyenCV/base.html" %}
 {% block title %}Trang chủ{% endblock%}
@@ -32,40 +32,44 @@ Trong thư mục `./templates/truyenCV/`
 {% block body %}
     <ol>
     {% for tr in truyen %}
-        <li><a href="{% url 'detail' tr.id %}">{{tr.tenTruyen}}</a></li>
+        <li><a href="/truyenCV/detail/{{tr.id}}">{{tr.tenTruyen}}</a></li>
     {% endfor %}
     </ol>
-    <a href="{% url 'register' %}">Đăng ký tài khoản</a>
-    <a href="{% url 'upload' %}">Đăng truyện</a>
 {% endblock%}
 ```
+* Thêm đường dẫn trong file truyenCV/urls.py
+```
+from django.urls import path
+from . import views
 
-# Hiển thị bài viết
-Mở views.py
+urlpatterns = [
+    path('', views.home),
+    ]
+```
+# 2.Hiển thị chi tiết bài viết
+* Mở views.py
 ```
 from django.shortcuts import render
 from .models import Truyen
 
 def home(request):
   ...
-def truyen(requst,id):
+def detail(request, id):
     content = {'truyen':Truyen.objects.get(id=id)}
-    return render(requst,'truyenCV/baseTruyen.html',content)
+    return render(request,'truyenCV/detail.html',content)
 ```
-Tạo file baseTruyen.html trong thư mục ./templates/truyenCV/
+* Tạo file detail.html trong thư mục `./templates/truyenCV/`
 ```
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ truyen.tenTruyen }}</title>
-</head>
-<body>
-  <h1>{{ truyen.tenTruyen }}</h1>
-  <h2>Tác giả: {{ truyen.tacGia }}</h2>
-  <h2>Thể loại: {{ truyen.theLoai }}</h2>
-  <h4>Ngày đăng: {{truyen.ngayDang}}</h4>
-  <p>{{ truyen.noiDung }}</p>
-</body>
-</html>
+{% extends "truyenCV/base.html" %}
+{% block title %}{{ truyen.tenTruyen }}{% endblock%}
+{% block header %}
+    <h1>{{ truyen.tenTruyen }}</h1>
+    <h2>Tác giả: {{ truyen.tacGia }}</h2>
+    <h2>Thể loại: {{ truyen.theLoai }}</h2>
+    <h4>Ngày đăng: {{truyen.ngayDang}}</h4>
+{% endblock%}
+{% block body %}
+    <p>{{ truyen.noiDung }}</p>
+    <p><a href="/truyenCV">Trang chủ</a></p>
+{% endblock%}
 ```
