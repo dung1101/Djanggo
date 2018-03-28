@@ -10,7 +10,7 @@ urlpatterns = [
     path('<int:id>', views.detail, name='detail'),
 ]
 ```
-truyenCV/index.html
+truyenCV/home.html
 ```
 {% extends "truyenCV/base.html" %}
 {% block title %}Trang chủ{% endblock%}
