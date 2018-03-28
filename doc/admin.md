@@ -13,16 +13,14 @@ nhập user passwd
 mở file admin.py
 ```
 from django.contrib import admin
-# import bảng Truyen tạo ở models.py
 from .models import Truyen
 
 class AdminTruyen(admin.ModelAdmin):
     # hiển thị trên trang admin
-    list_display = ['tenTruyen','tacGia','theLoai']
+    list_display = ['tenTruyen', 'tacGia', 'theLoai', 'ngayDang']
+    # bảng lọc
+    list_filter = ['ngayDang']
     # thêm thanh tìm kiếm dựa vào tenTruyen
     search_fields = ['tenTruyen']
-    # bảng lọc
-    list_filter = ['tacGia']
-# add bảng truyen vào admin quản lý
 admin.site.register(Truyen,AdminTruyen)
 ```
