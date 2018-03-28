@@ -8,22 +8,36 @@ def home(request):
     content = {'truyen':Truyen.objects.all()}
     return render(request,'truyenCV/home.html',content)
 ```
-Tạo file home.html trong thư mục ./templates/truyenCV/
+Trong thư mục `./templates/truyenCV/`
+* Tạo file base.html
 ```
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+    <title>{% block title %}{% endblock%}</title>
 </head>
 <body>
-  <h1>Truyện Convert</h1>
-    {% for tr in truyen %}
-    <a href="./{{tr.id}}">{{tr.tenTruyen}}</a>
-    <br />
-    {% endfor %}
+{% block header %}{% endblock%}
+{% block body %}{% endblock%}
 </body>
 </html>
+```
+* Tạo file index.html 
+```
+{% extends "truyenCV/base.html" %}
+{% block title %}Trang chủ{% endblock%}
+{% block header %}
+    <h1>Truyện Convert</h1>
+{% endblock%}
+{% block body %}
+    <ol>
+    {% for tr in truyen %}
+        <li><a href="{% url 'detail' tr.id %}">{{tr.tenTruyen}}</a></li>
+    {% endfor %}
+    </ol>
+    <a href="{% url 'register' %}">Đăng ký tài khoản</a>
+    <a href="{% url 'upload' %}">Đăng truyện</a>
+{% endblock%}
 ```
 
 # Hiển thị bài viết
