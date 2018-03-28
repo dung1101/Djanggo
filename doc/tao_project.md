@@ -3,9 +3,9 @@
 bật cmd tại folder muốn đặt project
 gõ lệnh 
 ```
-django-admin startproject mysite
+django-admin startproject firstSite
 ```
-(mysite là tên project) 
+(firstSite là tên project) 
 ## Cấu trúc project
 ```
 mysite/
@@ -26,7 +26,7 @@ python manage.py runserver
 ```
 # Tạo web app
 ```
-python manage.py startapp myapp
+python manage.py startapp truyenCV
 ```
 myapp là tên app
 ## install app
@@ -38,11 +38,11 @@ mở file settings.py trong folder project
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp'
+    'truyenCV'
 ```
 ## Cấu trúc app
 ```
-myapp/
+truyenCV/
   migrations/
   __init__.py
   admin.py
