@@ -1,4 +1,4 @@
-# Tạo trang upload để tải truyện 
+# Tạo trang upload để tải truyện lên app
 * trong truyenCV tạo file form.py
 ```
 from django import forms
