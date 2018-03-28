@@ -4,3 +4,4 @@
 ## 3.[Lấy dữ liệu từ database](./doc/lay_du_lieu.md)
 ## 4.[Loại bỏ hardcode](./doc/loai_bo_hardcode.md)
 ## 5.[Admin](./doc/admin.md)
+## 6.[upload dữ liệu](./doc/upload_du_lieu.md)
