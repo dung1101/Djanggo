@@ -73,3 +73,13 @@ def detail(request, id):
     <p><a href="/truyenCV">Trang chủ</a></p>
 {% endblock%}
 ```
+* Thêm url 
+```
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('<int:id>', views.detail, name='detail'),
+]
+```
