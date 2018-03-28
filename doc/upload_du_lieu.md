@@ -39,6 +39,17 @@ def upload(request):
     <a href="{% url 'home'%}">Quay lại trang chủ</a>
 {% endblock%}
 ```
+* tạo file success.html
+```
+{% extends "truyenCV/base.html" %}
+{% block title %}Thành công{% endblock%}
+{% block header %}
+    <center><h1>Thành công</h1></center>
+{% endblock%}
+{% block body %}
+    <center><a href="{% url 'home'  %}">Quay lại trang chủ</a></center>
+{% endblock%}
+```
 * thêm url trong urls.py
 ```
 from django.urls import path
