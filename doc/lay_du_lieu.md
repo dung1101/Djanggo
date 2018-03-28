@@ -22,7 +22,7 @@ Trong thư mục `./templates/truyenCV/`
 </body>
 </html>
 ```
-* Tạo file index.html 
+* Tạo file home.html 
 ```
 {% extends "truyenCV/base.html" %}
 {% block title %}Trang chủ{% endblock%}
