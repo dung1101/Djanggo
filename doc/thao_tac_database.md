@@ -5,36 +5,26 @@ Ví dụ
 ```
 from django.db import models
 
-class Reporter(models.Model):
-    full_name = models.CharField(max_length=70)
+# Create your models here.
+class Truyen(models.Model):
+    tenTruyen = models.CharField(max_length=50)
+    theLoai = models.CharField(max_length=50)
+    tacGia = models.CharField(max_length=50)
+    ngayDang = models.DateTimeField(auto_now_add=True)
+    noiDung = models.TextField(null=False)
     def __str__(self):
-      return self.full_name
-
-class Article(models.Model):
-    pub_date = models.DateField()
-    headline = models.CharField(max_length=200)
-    content = models.TextField()
-    reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
-    def __str__(self):
-      return self.headline
-
+        return self.tenTruyen
 ```
-Tạo 2 bảng:
-* Bảng 1 : có 1 cột là full_name kiểu Char và tối đa là 70 ký tự, còn 1 cột là id thì tự tạo và đó là pk
-* Bảng 2 : có 4 cột và 1 cột id(pk), reporter là khóa phụ của bảng liên kết với bảng 1 
+Tạo bảng có 6 fields trong đó 5 fields là các biến của lớp như trên và 1 field là id (pk , auto_increment)
 ## Tạo migration
-migration : chuyển đổi các câu lệnh sql tương ứng để tạo bảng
-mở terminal và gõ
-```
-python manage.py makemigrations myapp
-```
-Nếu thành công sẽ tạo một bản migration nằm trong thư mục myapp/migrations
-Ta có thể xem file này để xem câu lệnh sql đã chuyển đổi
+migration : file lưu các thay đổi về model
+mở terminal và gõ `python manage.py makemigrations truyenCV`
+Nếu thành công sẽ tạo một bản migration nằm trong thư mục truyenCV/migrations
 ## Đồng bộ với csdl
 ```
 python manage.py migrate
 ```
-Sau khi thành công thì trên cơ sở dũ liệu sẽ tạo 2 bảng tương ứng với 2 class như bên trên
+Sau khi thành công thì trên cơ sở dũ liệu sẽ tạo bảng tương ứng với class như bên trên
 ## Làm việc với cơ sở dữ liệu thông qua python API
 Mở shell
 ```
