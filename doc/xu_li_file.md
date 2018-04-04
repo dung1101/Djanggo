@@ -7,3 +7,5 @@ ví dụ có file css `/static/css/style.css`
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 ```
+* Tao link download : `/static/download/OnlyOne.mp3` 
+`<a href="{% static 'download/OnlyOne.mp3' %}" download="OnlyOne-Boa.MP3">`
