@@ -13,3 +13,4 @@ DATABASES = {
 }
 ```
 * Sử dụng câu lệnh để tạo model `python manage.py inspectdb > models.py`
+* `python manage.py migrate [appname]`
