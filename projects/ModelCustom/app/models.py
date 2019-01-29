@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 """
 A model is the single, definitive source of information about your data. It contains the essential fields and behaviors 
@@ -34,7 +35,39 @@ class HocSinh(models.Model):
 class Lop(models.Model):
     ten = models.CharField(max_length=3)
     khoi = models.IntegerField()
+    hoc_sinh = models.ForeignKey(HocSinh, on_delete=models.CASCADE, related_name='lops', related_query_name='lop')
 
     class Meta:
         db_table = 'lop'
 
+
+class Person(models.Model):
+    name = models.CharField(max_length=10)
+    friends = models.ManyToManyField("self")
+
+    def clean(self):
+        if self.name == 'Sinionth' or 'hehe':
+            raise ValidationError("Sinionth is a genius")
+
+    class Meta:
+        db_table = 'person'
+
+
+class Human(models.Model):
+    name = models.CharField(max_length=10, default='unknown')
+
+    class Meta:
+        abstract = True
+
+
+class Student(Human):
+    grade = models.IntegerField()
+    school = models.CharField(max_length=50)
+
+
+class Fire(models.Model):
+    pass
+
+
+class Water(models.Model):
+    pass
