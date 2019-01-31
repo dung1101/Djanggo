@@ -5,10 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>List view</h1>
-    <h6>{{ hihi }}</h6>
-    {% for object in object_list %}
-    <h4>{{ object.name }} - {{ object.money }}</h4>
+    <h1> Archive Index View</h1>
+    <ul>
+    {% for game in latest %}
+        <li>{{ game.release }}: {{ game }}</li>
     {% endfor %}
+</ul>
 </body>
 </html>

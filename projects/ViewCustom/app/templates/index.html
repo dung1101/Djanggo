@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{% load static %}-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ol>
+        <li><a href="{% url 'app:detail_view' pk=game_num %}" target="_blank">Detail View</a></li>
+        <li><a href="{% url 'app:list_view' %}" target="_blank">List View</a></li>
+        <li><a href="{% url 'app:form_view' %}" target="_blank">Form View</a></li>
+        <li><a href="{% url 'app:create_view' %}" target="_blank">Create View</a></li>
+        <li><a href="{% url 'app:update_view' pk=man_num %}" target="_blank">Update View</a></li>
+        <li><a href="{% url 'app:delete_view' pk=man_num %}" target="_blank">Delete View</a></li>
+        <li><a href="{% url 'app:archive_view' %}" target="_blank">Archive View</a></li>
+        <li><a href="{% url 'app:year_archive_view' year=2019 %}" target="_blank">Year Archive View</a></li>
+    </ol>
+</body>
+</html>
