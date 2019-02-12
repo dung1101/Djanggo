@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load humanize %}
+</head>
+<body>
+    {% for i in apnumber %}
+        {{ i | apnumber }}<br>
+    {% endfor %}
+    <hr>
+    {% for i in intcomma %}
+        {{ i | intcomma }}<br>
+    {% endfor %}
+    <hr>
+    {% for i in intword %}
+        {{ i | intword }}<br>
+    {% endfor %}
+    <hr>
+    {% for i in naturalday %}
+        {{ i | naturalday }}<br>
+    {% endfor %}
+    <hr>
+    {% for i in naturaltime %}
+        {{ i | naturaltime }}<br>
+    {% endfor %}
+    <hr>
+    {% for i in ordinal %}
+        {{ i | ordinal }}<br>
+    {% endfor %}
+</body>
+</html>
