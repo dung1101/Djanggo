@@ -1,7 +1,10 @@
+import csv
+import io
 from random import randrange
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse
+from django.template import Context, loader
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -10,7 +13,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.dates import ArchiveIndexView, YearArchiveView
-
+from reportlab.pdfgen import canvas
 
 from .forms import BuyForm
 from .models import Game, Manufacturer
@@ -42,6 +45,55 @@ def test(request):
 @require_POST
 def post_only(request):
     return HttpResponse("Post only")
+
+
+def csv_render_python_library(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="test_file.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
+    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
+
+    return response
+
+
+def csv_render_template(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+
+    csv_data = (
+        ('First row', 'Foo', 'Bar', 'Baz'),
+        ('Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"),
+    )
+
+    t = loader.get_template('csv_render_template.txt')
+    c = {
+        'data': csv_data,
+    }
+    response.write(t.render(c))
+    return response
+
+
+def pdf_render(request):
+    # Create a file-like buffer to receive PDF data.
+    buffer = io.BytesIO()
+
+    # Create the PDF object, using the buffer as its "file."
+    p = canvas.Canvas(buffer)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(100, 100, "Hello world.")
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    # FileResponse sets the Content-Disposition header so that browsers
+    # present the option to save the file.
+    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
 
 
 """
@@ -96,6 +148,11 @@ class DeVi(DetailView):
 class LiVi(ListView):
     model = Manufacturer
     template_name = 'li_vi.html'
+    """
+    Mặc định sẽ get all có thể thay đổi bằng thuộc tính queryset
+    
+    queryset = Manufacturer.objects.filter(...)
+    """
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

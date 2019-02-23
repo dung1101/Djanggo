@@ -363,7 +363,22 @@ def my_view(request):
 ```
 
 ### 5.6) Class-based views
-<a href='https://docs.djangoproject.com/en/2.1/topics/class-based-views/' target='_blank'>Chi tiết khái niệm xem tại đây</a>
+<a href='https://docs.djangoproject.com/en/2.1/topics/class-based-views/' target='_blank'>Khái niệm xem tại đây</a>
 
-<a href='https://docs.djangoproject.com/en/2.1/ref/class-based-views/' target='_blank'>Chi tiết sử dụng xem tại đây</a>
+<a href='https://docs.djangoproject.com/en/2.1/ref/class-based-views/' target='_blank'>Sử dụng xem tại đây</a>
 
+### 5.7) Advanced
+
+<a href='https://docs.djangoproject.com/en/2.1/howto/outputting-csv/' target='_blank'>CSV</a>
+
+<a href='https://docs.djangoproject.com/en/2.1/howto/outputting-pdf/' target='_blank'>PDF</a>
+
+### 5.8) Middleware
+> Middleware is a framework of hooks into Django’s request/response processing. It’s a light, low-level “plugin” system
+ for globally altering Django’s input or output.<br>
+Each middleware component is responsible for doing some specific function. For example, Django includes 
+a middleware component, AuthenticationMiddleware, that associates users with requests using sessions.
+
+<a href='https://docs.djangoproject.com/en/2.1/ref/middleware/' target='_blank'>Available middleware</a>
+
+ 

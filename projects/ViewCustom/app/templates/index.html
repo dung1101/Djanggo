@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--{% load static %}-->
+    {% load static %}
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -16,5 +16,6 @@
         <li><a href="{% url 'app:archive_view' %}" target="_blank">Archive View</a></li>
         <li><a href="{% url 'app:year_archive_view' year=2019 %}" target="_blank">Year Archive View</a></li>
     </ol>
+<script style="text/javascript" src="{% static 'app/test.js'%}"></script>
 </body>
 </html>
