@@ -7,3 +7,5 @@
 Một webserver truyền thống không thể hiểu hay có bất kỳ cách nào để chạy ứng dụng Python. Vì vậy WSGI ra đời để giải quyết vấn đề này. 
 Nó sẽ đứng giữa webserver và app làm nhiệm vụ cầu nối. 
 
+#### Custom django command
+[https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html](https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html)
