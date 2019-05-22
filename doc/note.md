@@ -9,3 +9,12 @@ Nó sẽ đứng giữa webserver và app làm nhiệm vụ cầu nối.
 
 #### Custom django command
 [https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html](https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html)
+
+#### Admin page
+[Action](https://docs.djangoproject.com/en/2.2/ref/contrib/admin/actions/)
+
+[Admin](https://docs.djangoproject.com/en/2.2/ref/contrib/admin/)
+
+[Reversing URL](https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#reversing-admin-urls)
+
+[Datetime Format](https://docs.djangoproject.com/en/2.2/ref/settings/#datetime-input-formats)
