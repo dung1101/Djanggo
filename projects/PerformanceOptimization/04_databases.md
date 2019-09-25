@@ -13,7 +13,16 @@ connection['db_alias'] #với nhiều db
 ``` 
 
 ### 1.2) Use standard DB optimization techniques
-- Indexes: sử dụng Meta.indexes hoặc Field.db_index để  đánh index, ưu tiên các field hay dùng để filter, exclude, order_by
+- Indexes: sử dụng Meta.indexes hoặc Field.db_index để đánh index cho từng field hoặc tổ hợp các field, ưu tiên các field hay dùng để filter, exclude, order_by
+  ```
+  class Meta:
+    indexes = [
+        models.Index(fields=['date_time', 'branch', 'vinmec_site', 'category']),
+        models.Index(fields=['-date_time', '-id'])
+    ]
+  # hoặc 
+  caller_number = models.CharField(max_length=20, null=True, blank=True, db_index=True)
+  ```
 - Sử dụng kiểu dữ liệu phù hợp
 
 ### 1.3) Understand QuerySets
